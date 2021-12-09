@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "iOSOpenCC"
-  spec.version      = "1.1.3"
+  spec.version      = "1.1.4"
   spec.summary      = "iOS 的 OpenCC（1.1.3） 版本 "
   spec.description  = <<-DESC
   Opencc for iOS
