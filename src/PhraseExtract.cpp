@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Open Chinese Convert
  *
  * Copyright 2015-2020 Carbo Kuo <byvoid@byvoid.com>
