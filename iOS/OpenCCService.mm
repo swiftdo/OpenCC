@@ -59,8 +59,8 @@ class SimpleConverter;
                 
             default:json = @"s2t.json";break;
         }
-        
-        NSString *config = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:json];
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSString *config = [[bundle resourcePath] stringByAppendingPathComponent:json];
         const std::string *c = new std::string([config UTF8String]);
         simpleConverter = new opencc::SimpleConverter(*c);
     }
