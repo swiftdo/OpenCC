@@ -14,7 +14,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "iOSOpenCC"
-  spec.version      = "1.1.6"
+  spec.version      = "1.1.7"
   spec.summary      = "iOS 的 OpenCC（1.1.3） 版本 "
   spec.description  = <<-DESC
   Opencc for iOS, 因为没有iOS的Pod库，现在构造一个
@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
  
   spec.license      = "MIT"
   spec.author       = { "lai" => "1164258202@qq.com" }
-  spec.platform     = :ios, "11.0"
+  spec.platform     = :ios, "9.0"
   spec.source       = { :git => "https://github.com/swiftdo/OpenCC", :tag => "#{spec.version}" }
 
   spec.source_files  = [
