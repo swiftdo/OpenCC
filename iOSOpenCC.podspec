@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "iOSOpenCC"
-  spec.version      = "1.1.4"
+  spec.version      = "1.1.5"
   spec.summary      = "iOS 的 OpenCC（1.1.3） 版本 "
   spec.description  = <<-DESC
   Opencc for iOS
@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/swiftdo/OpenCC"
  
   spec.license      = "MIT"
-  spec.author             = { "lai" => "1164258202@qq.com" }
+  spec.author       = { "lai" => "1164258202@qq.com" }
   spec.platform     = :ios, "11.0"
   spec.source       = { :git => "https://github.com/swiftdo/OpenCC", :tag => "#{spec.version}" }
 
@@ -58,7 +58,7 @@ Pod::Spec.new do |spec|
   ]
 
   # 通过 https://github.com/leetal/ios-cmake 打出的静态库
-  spec.vendored_libraries = "iOS/OpenCC/marisa/libmarisa.a"
+  spec.vendored_libraries = "iOS/marisa/libmarisa.a"
   spec.libraries = "c++"
   
   spec.resources =  [
@@ -66,14 +66,19 @@ Pod::Spec.new do |spec|
     "iOS/ocd2/*.ocd2"
   ]
 
-  spec.private_header_files = "iOS/OpenCC/marisa/*/*.h", 'deps/rapidjson-1.1.0/rapidjson/*/*.h'
-
-  spec.preserve_paths = 'iOS/OpenCC/marisa', 'deps/rapidjson-1.1.0/rapidjson'
+  spec.private_header_files = "iOS/marisa/include/*.h", "iOS/marisa/*.h", 'deps/rapidjson-1.1.0/rapidjson/*/*.h'
 
   pod_h_search_path = [
-     "\"${PODS_TARGET_SRCROOT}/iOS/OpenCC/marisa\"",
-     "\"${PODS_TARGET_SRCROOT}/iOS/OpenCC/marisa/include\"",
-     "\"${PODS_TARGET_SRCROOT}/deps/rapidjson-1.1.0/rapidjson\""
+     # Podfile不使用 use_frameworks 搜索路径
+     "$(PODS_ROOT)/Headers/Public/iOSOpenCC",
+     "$(PODS_ROOT)/Headers/Private/iOSOpenCC",
+     #Podfile使用use_frameworks库内搜索路径
+     "$(PODS_ROOT)/iOSOpenCC/Headers",
+     "$(PODS_ROOT)/iOSOpenCC/PrivateHeaders",
+     # Podfile使用指定路径链接
+     "$(PODS_TARGET_SRCROOT)/iOS/marisa",
+     "$(PODS_TARGET_SRCROOT)/iOS/marisa/include",
+     "$(PODS_TARGET_SRCROOT)/deps/rapidjson-1.1.0/rapidjson"
   ]
 
   spec.pod_target_xcconfig = {
@@ -82,7 +87,6 @@ Pod::Spec.new do |spec|
     "HEADER_SEARCH_PATHS" => pod_h_search_path.join(' '),
     'ENABLE_BITCODE' => 'NO'
   }
-    
-  spec.user_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
-
+  
+  spec.user_target_xcconfig = { 'ENABLE_BITCODE' => 'NO'}
 end
