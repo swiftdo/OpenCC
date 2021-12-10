@@ -8,10 +8,10 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "iOSOpenCC"
-  spec.version      = "1.1.5"
+  spec.version      = "1.1.6"
   spec.summary      = "iOS 的 OpenCC（1.1.3） 版本 "
   spec.description  = <<-DESC
-  Opencc for iOS
+  Opencc for iOS, 因为没有iOS的Pod库，现在构造一个
                    DESC
 
   spec.homepage     = "https://github.com/swiftdo/OpenCC"
@@ -66,7 +66,7 @@ Pod::Spec.new do |spec|
     "iOS/ocd2/*.ocd2"
   ]
 
-  spec.private_header_files = "iOS/marisa/include/*.h", "iOS/marisa/*.h", 'deps/rapidjson-1.1.0/rapidjson/*/*.h'
+  spec.preserve_paths = "iOS/marisa/**/*.h", 'deps/rapidjson-1.1.0/*/*.h'
 
   pod_h_search_path = [
      # Podfile不使用 use_frameworks 搜索路径
@@ -78,7 +78,7 @@ Pod::Spec.new do |spec|
      # Podfile使用指定路径链接
      "$(PODS_TARGET_SRCROOT)/iOS/marisa",
      "$(PODS_TARGET_SRCROOT)/iOS/marisa/include",
-     "$(PODS_TARGET_SRCROOT)/deps/rapidjson-1.1.0/rapidjson"
+     "$(PODS_TARGET_SRCROOT)/deps/rapidjson-1.1.0"
   ]
 
   spec.pod_target_xcconfig = {
