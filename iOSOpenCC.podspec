@@ -6,6 +6,11 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
+# pod lint 的最终下载的文件件路径： /Users/mac/Library/Caches/CocoaPods/Pods/External/iOSOpenCC
+# 本次制作需要手动编译出 ocds, 直接 make ，然后到build 产物找到
+# 然后需要将  marisa 编译为静态库，通过 https://github.com/leetal/ios-cmake 打出的静态库
+# lint 过程：pod spec lint iOSOpenCC.podspec --allow-warnings --verbose --skip-import-validation  --use-libraries
+
 Pod::Spec.new do |spec|
   spec.name         = "iOSOpenCC"
   spec.version      = "1.1.6"
@@ -66,7 +71,13 @@ Pod::Spec.new do |spec|
     "iOS/ocd2/*.ocd2"
   ]
 
-  spec.preserve_paths = "iOS/marisa/**/*.h", 'deps/rapidjson-1.1.0/*/*.h'
+  spec.preserve_paths = "iOS/marisa/*.h",
+  'iOS/marisa/include/marisa/*.h',
+  'deps/rapidjson-1.1.0/rapidjson/*.h',
+  'deps/rapidjson-1.1.0/rapidjson/error/*.h',
+  'deps/rapidjson-1.1.0/rapidjson/internal/*.h',
+  'deps/rapidjson-1.1.0/rapidjson/msinttypes/*.h'
+  
 
   pod_h_search_path = [
      # Podfile不使用 use_frameworks 搜索路径
@@ -78,7 +89,8 @@ Pod::Spec.new do |spec|
      # Podfile使用指定路径链接
      "$(PODS_TARGET_SRCROOT)/iOS/marisa",
      "$(PODS_TARGET_SRCROOT)/iOS/marisa/include",
-     "$(PODS_TARGET_SRCROOT)/deps/rapidjson-1.1.0"
+     "$(PODS_TARGET_SRCROOT)/deps/rapidjson-1.1.0",
+     "$(PODS_TARGET_SRCROOT)/deps/rapidjson-1.1.0/rapidjson"
   ]
 
   spec.pod_target_xcconfig = {
