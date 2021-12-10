@@ -34,6 +34,8 @@ NSLog(@"%@", result);
 
 * 本次制作需要手动编译出 ocd2, 直接 make ，然后到 build 产物找到
 * 然后需要将  marisa 编译为静态库，通过 https://github.com/leetal/ios-cmake 打出的静态库
+  * cmake .. -GXcode -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=OS64COMBINED -DENABLE_BITCODE=FALSE
+  * 通过打开 xcode 去编译，执行的脚本有问题
 * 编排 podspec, 难点在 c++ 库的 header 路径处理
 * lint 过程：pod spec lint iOSOpenCC.podspec --allow-warnings --verbose --skip-import-validation  --use-libraries
 * trunk 过程： pod trunk push iOSOpenCC.podspec --allow-warnings --verbose --skip-import-validation  --use-libraries
