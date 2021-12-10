@@ -1,4 +1,45 @@
-# Open Chinese Convert 開放中文轉換
+# OpenCC(1.1.3) for iOS
+
+## 使用
+
+```ruby
+pod 'iOSOpenCC', '~> 1.1.6'
+```
+
+## 样例代码：
+
+```objc
+/// 导入头文件
+#import "OpenCCService.h"
+
+
+/// 使用代码
+
+OpenCCServiceConverterType type = OpenCCServiceConverterTypeS2T;
+
+self.openCCService = [[OpenCCService alloc] initWithConverterType:type];
+
+NSString *str =  @" 说明：\n 1. 这个例子只是简体转繁体的。其它转换，请参考 OpenCCServiceConverterType 这个 ENUM 定义的词典。 \n 2. 由于 OpenCC 官方的 ocd 词典足有 4.3M 大，在iPhone 4, iPhone 4s, iPhone 5s, iPhone 5 下会消耗很大内存。故使用 txt 格式词典。 \n 3. 接口很简单。具体请参考 OpenCCService。 swift 直接调用 OpenCCService 即可。\n 4. 更多咨询，可关注微信公众号：OldBirds";
+
+NSString *result = [self.openCCService convert:str];
+
+NSLog(@"%@", result);
+
+
+```
+
+
+
+## 制作 Pod 过程
+
+* 本次制作需要手动编译出 ocd2, 直接 make ，然后到 build 产物找到
+* 然后需要将  marisa 编译为静态库，通过 https://github.com/leetal/ios-cmake 打出的静态库
+* 编排 podspec, 难点在 c++ 库的 header 路径处理
+* lint 过程：pod spec lint iOSOpenCC.podspec --allow-warnings --verbose --skip-import-validation  --use-libraries
+* trunk 过程： pod trunk push iOSOpenCC.podspec --allow-warnings --verbose --skip-import-validation  --use-libraries
+
+
+## Open Chinese Convert 開放中文轉換
 
 [![Travis](https://img.shields.io/travis/BYVoid/OpenCC.svg)](https://travis-ci.org/BYVoid/OpenCC)
 [![AppVeyor](https://img.shields.io/appveyor/ci/Carbo/OpenCC.svg)](https://ci.appveyor.com/project/Carbo/OpenCC)

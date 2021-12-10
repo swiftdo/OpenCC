@@ -7,9 +7,10 @@
 #
 
 # pod lint 的最终下载的文件件路径： /Users/mac/Library/Caches/CocoaPods/Pods/External/iOSOpenCC
-# 本次制作需要手动编译出 ocds, 直接 make ，然后到build 产物找到
+# 本次制作需要手动编译出 ocd2, 直接 make ，然后到 build 产物找到
 # 然后需要将  marisa 编译为静态库，通过 https://github.com/leetal/ios-cmake 打出的静态库
 # lint 过程：pod spec lint iOSOpenCC.podspec --allow-warnings --verbose --skip-import-validation  --use-libraries
+# trunk 过程： pod trunk push iOSOpenCC.podspec --allow-warnings --verbose --skip-import-validation  --use-libraries
 
 Pod::Spec.new do |spec|
   spec.name         = "iOSOpenCC"
